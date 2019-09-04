@@ -5,15 +5,18 @@ inputs:
   owner:
     description: 'Owner of the forked repository'
     required: true
-  originBranch:
+  github_token:
+    description: 'Token for the github API'
+    required: true
+  origin_branch:
     description: 'Branch to track'
     required: false
     default: 'master'
-  destinationBranch:
+  destination_branch:
     description: 'Branch to keep updated'
     required: false
     default: 'master'
-  mergeMethod:
+  merge_method:
     description: 'Merge method to use'
     required: false
     default: 'rebase'
