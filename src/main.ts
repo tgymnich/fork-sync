@@ -12,12 +12,9 @@ async function run() {
     const originBranch = core.getInput('origin_branch');
     const mergeMethod = core.getInput('merge_method');
 
-    octokit.pulls.create({owner: context.repo.owner, repo: context.repo.repo, title: 'Sync Fork', head: owner+':'+originBranch, base: destinationBranch, merge_method: mergeMethod})
+    await octokit.pulls.create({owner: context.repo.owner, repo: context.repo.repo, title: 'Sync Fork', head: owner+':'+originBranch, base: destinationBranch, merge_method: mergeMethod})
       .then((pr) => {
-        console.log(pr.data.user.login);
-        console.log(context.repo.repo);
-        console.log(pr.data.number);
-        octokit.pulls.merge({owner: pr.data.user.login, repo: context.repo.repo, pull_number: pr.data.number});
+        octokit.pulls.merge({owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number});
       })
       .catch((err) => {
         core.setFailed(err.message);
