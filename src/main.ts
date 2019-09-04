@@ -13,7 +13,15 @@ async function run() {
     const mergeMethod = core.getInput('merge_method');
 
     octokit.pulls.create({owner: context.repo.owner, repo: context.repo.repo, title: 'Sync Fork', head: owner+':'+originBranch, base: destinationBranch, merge_method: mergeMethod})
-    .then(pr => octokit.pulls.merge({owner: pr.data.user.login, repo: context.repo.repo, pull_number: pr.data.number}));
+      .then((pr) => {
+        console.log(pr.data.user.login);
+        console.log(context.repo.repo);
+        console.log(pr.data.number);
+        octokit.pulls.merge({owner: pr.data.user.login, repo: context.repo.repo, pull_number: pr.data.number});
+      })
+      .catch((err) => {
+        core.setFailed(err.message);
+    });
 
   } catch (error) {
     core.setFailed(error.message);
