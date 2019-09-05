@@ -1,10 +1,10 @@
-name: 'fork-sync-action'
+name: 'Fork Sync'
 description: 'Keep your fork up to date'
 author: 'TG908'
 inputs:
   owner:
     description: 'Owner of the forked repository'
-    required: true
+    required: false
   github_token:
     description: 'Token for the github API'
     required: true
@@ -20,6 +20,13 @@ inputs:
     description: 'Merge method to use'
     required: false
     default: 'rebase'
+  pr_title:
+    description: 'The title of the pull request'
+    required: false
+    default: 'Fork Sync'
+  pr_message:
+    description: 'The message in the pull request'
+    required: false
 
 runs:
   using: 'node12'

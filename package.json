@@ -1,6 +1,6 @@
 {
-  "name": "fork-sync-action",
-  "version": "0.0.0",
+  "name": "fork-sync",
+  "version": "0.0.1",
   "private": true,
   "description": "Keep your fork up to date",
   "main": "lib/main.js",
@@ -10,14 +10,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/javascript-template.git"
+    "url": "git+https://github.com/TG908/fork-sync.git"
   },
   "keywords": [
     "actions",
     "node",
-    "setup"
+    "setup",
+    "fork",
+    "automation",
+    "sync"
   ],
-  "author": "GitHub",
+  "author": "TG908",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.0.0",
