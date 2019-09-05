@@ -1,6 +1,9 @@
 name: 'Fork Sync'
 description: 'Keep your fork up to date'
 author: 'TG908'
+branding:
+  icon: 'git-branch'
+  color: 'black'
 inputs:
   owner:
     description: 'Owner of the forked repository'
