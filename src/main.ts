@@ -19,7 +19,8 @@ async function run() {
         octokit.pulls.merge({owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number});
       })
       .catch((err) => {
-        core.setFailed('Failed to create or merge PR: '+err.errors["message"]);
+        console.log(err)
+        core.setFailed('### Failed to create or merge PR ###');
     });
 
   } catch (error) {
