@@ -14,7 +14,7 @@ async function run() {
     const prTitle = core.getInput('pr_title', {required: false});
     const prMessage = core.getInput('pr_message', {required: false});
 
-    await octokit.pulls.create({owner: context.repo.owner, repo: context.repo.repo, title: prTitle, head: owner+':'+originBranch, base: destinationBranch, body: prMessage, merge_method: mergeMethod})
+    await octokit.pulls.create({owner: context.repo.owner, repo: context.repo.repo, title: prTitle, head: owner+':'+originBranch, base: destinationBranch, body: prMessage, merge_method: mergeMethod, maintainer_can_modify: false})
       .then((pr) => {
         octokit.pulls.merge({owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number});
       })
