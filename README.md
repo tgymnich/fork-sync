@@ -1,7 +1,7 @@
 # Fork Sync
 
 Github action to sync your Forks.
-This action automatically creates and merges a pull request with the head defined by `origin_branch` from owner into the base defined by `destination_branch`.
+This action automatically creates and merges a pull request with the head defined by `ownwer`:`head` into the base defined by `base`. If you create a PR in the same repository you can omit the `owner` parameter.
 
 # Example Workflow
 
