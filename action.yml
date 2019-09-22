@@ -11,18 +11,18 @@ inputs:
   github_token:
     description: 'Token for the github API'
     required: true
-  origin_branch:
+  head:
     description: 'Branch to track'
     required: false
     default: 'master'
-  destination_branch:
+  base:
     description: 'Branch to keep updated'
     required: false
     default: 'master'
   merge_method:
     description: 'Merge method to use'
     required: false
-    default: 'rebase'
+    default: 'merge'
   pr_title:
     description: 'The title of the pull request'
     required: false
