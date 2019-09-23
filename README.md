@@ -26,14 +26,14 @@ jobs:
         head: master
 ```
 
-# Options
+|  name 	        |   Optional  |   Default      |   description	                       |
+|---	            |---          |---             |---	                                   |
+|   owner	        | ✅          | "repo owner"   |   Owner of the forked repository	    |
+|   github_token	| ❌          |                |   Token  to access the Github API	    |
+|   head          | ✅          | master         |   Head branch	                        |
+|   base          | ✅          | master         |   Base branch	                        |
+|   merge_method  | ✅          | merge          |   merge, rebase or squash            	|
+|   pr_title      | ✅          | Fork Sync      |   Title of the created pull request	  |
+|   pr_message    | ✅    	     |                |   Message of the created pull request	|
 
-|  name 	                                          |   description	                        |
-|---	                                              |---	                                  |
-|   owner (optional)	                              |   Owner of the forked repository	    |
-|   github_token	                                  |   Token  to access the Github API	    |
-|   head (optional, default = master)	              |   Head branch	                        |
-|   base (optional, default = master)	              |   Base branch	                        |
-|   merge_method (optional, default = rebase)       |   merge, rebase or squash            	|
-|   pr_title (optional, default = Fork Sync)        |   Title of the created pull request	|
-|   pr_message                                  	  |   Message of the created pull request	|
+# Options
