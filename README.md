@@ -1,5 +1,5 @@
 # Fork Sync
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Ftg908%2Ffork-sync%2Fbadge%3Fref%3Dmaster&style=flat-square)](https://actions-badge.atrox.dev/tg908/fork-sync/goto?ref=master)  ![Version](https://img.shields.io/github/v/tag/tg908/fork-sync?style=flat-square)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Ftg908%2Ffork-sync%2Fbadge%3Fref%3Dmaster&style=flat-square)](https://actions-badge.atrox.dev/tg908/fork-sync/goto?ref=master)  ![Version](https://img.shields.io/github/v/release/tg908/fork-sync?style=flat-square)
 
 Github action to sync your Forks.
 This action automatically creates and merges a pull request with the head defined by `ownwer`:`head` into the base defined by `base`. If you create a PR in the same repository you can omit the `owner` parameter.
