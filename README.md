@@ -27,12 +27,12 @@ jobs:
 ```
 # Parameters
 
-|  name 	        |   Optional  |   Default      |   description	                       |
-|---	            |---          |---             |---	                                   |
-|   owner	        | ✅          | $repo owner    |   Owner of the forked repository	    |
-|   github_token	| ❌          |                |   Token  to access the Github API	    |
-|   head          | ✅          | master         |   Head branch	                        |
-|   base          | ✅          | master         |   Base branch	                        |
-|   merge_method  | ✅          | merge          |   merge, rebase or squash            	|
-|   pr_title      | ✅          | Fork Sync      |   Title of the created pull request	  |
-|   pr_message    | ✅    	     |                |   Message of the created pull request	|
+|  name 	        |   Optional  |   Default              |   description	                       |
+|---	            |---          |---                     |---	                                   |
+|   owner	        | ✅          | $current_repo_owner    |   Owner of the forked repository	    |
+|   github_token	| ❌          |                        |   Token  to access the Github API	    |
+|   head          | ✅          | master                 |   Head branch	                        |
+|   base          | ✅          | master                 |   Base branch	                        |
+|   merge_method  | ✅          | merge                  |   merge, rebase or squash            	|
+|   pr_title      | ✅          | Fork Sync              |   Title of the created pull request	  |
+|   pr_message    | ✅    	     |                        |   Message of the created pull request	|
