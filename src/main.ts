@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 const Github = require('@actions/github');
-const Octokit = require('@octokit/rest').plugin(require('@octokit/plugin-retry'))
+const Octokit = require('@octokit/rest').plugin(require('@octokit/plugin-retry'));
 const githubToken = core.getInput('github_token', { required: true });
 const context = Github.context;
 const octokit = new Octokit({auth: githubToken});
