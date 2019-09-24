@@ -1,54 +1,28 @@
 import * as core from '@actions/core';
-const github = require('@actions/github');
-var promiseRetry = require('promise-retry');
-
+const Github = require('@actions/github');
+const Octokit = require('@octokit/rest').plugin(require('@octokit/plugin-retry'))
 const githubToken = core.getInput('github_token', { required: true });
-const context = github.context;
-const octokit = new github.GitHub(githubToken);
+const context = Github.context;
+const octokit = new Octokit(githubToken);
 
 async function run() {
+  const owner = core.getInput('owner', { required: false }) || context.repo.owner;
+  const base = core.getInput('base', { required: false });
+  const head = core.getInput('head', { required: false });
+  const mergeMethod = core.getInput('merge_method', { required: false });
+  const prTitle = core.getInput('pr_title', { required: false });
+  const prMessage = core.getInput('pr_message', { required: false });
+
   try {
-    const owner = core.getInput('owner', { required: false }) || context.repo.owner;
-    const base = core.getInput('base', { required: false });
-    const head = core.getInput('head', { required: false });
-    const mergeMethod = core.getInput('merge_method', { required: false });
-    const prTitle = core.getInput('pr_title', { required: false });
-    const prMessage = core.getInput('pr_message', { required: false });
-
-    await octokit.pulls.create({ owner: context.repo.owner, repo: context.repo.repo, title: prTitle, head: owner + ':' + head, base: base, body: prMessage, merge_method: mergeMethod, maintainer_can_modify: false })
-      .then((pr) => {
-
-        promiseRetry(function (retry, number) {
-          if (number > 1) {
-            console.log('merge attempt number ', number);
-          }
-
-          return octokit.pulls.merge({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number })
-            .catch(function (err) {
-              if (!!err.message && err.message == 'Base branch was modified. Review and try the merge again.') {
-                retry(err);
-              } else {
-                throw err;
-              }
-            });
-        })
-          .catch(function (err) {
-            console.log(err);
-            core.setFailed('Failed to merge pull request');
-          });
-      })
-
-      .catch((err) => {
-        if (!!err.errors && err.errors[0].message == 'No commits between ' + context.repo.owner + ':' + base + ' and ' + owner + ':' + head) {
-          console.log('No commits between ' + context.repo.owner + ':' + base + ' and ' + owner + ':' + head);
-        } else {
-          console.log(err)
-          core.setFailed('Failed to create pull request');
-        }
-      });
-
+    let pr = await octokit.pulls.create({ owner: context.repo.owner, repo: context.repo.repo, title: prTitle, head: owner + ':' + head, base: base, body: prMessage, merge_method: mergeMethod, maintainer_can_modify: false });
+    await octokit.pulls.merge({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number });
   } catch (error) {
-    core.setFailed('Error setting up action: ' + error.message);
+    if (!!error.errors && error.errors[0].message == 'No commits between ' + context.repo.owner + ':' + base + ' and ' + owner + ':' + head) {
+      console.log('No commits between ' + context.repo.owner + ':' + base + ' and ' + owner + ':' + head);
+    } else {
+      console.log(error)
+      core.setFailed('Failed to create or merge pull request');
+    }
   }
 }
 
