@@ -3,7 +3,7 @@ const Github = require('@actions/github');
 const Octokit = require('@octokit/rest').plugin(require('@octokit/plugin-retry'))
 const githubToken = core.getInput('github_token', { required: true });
 const context = Github.context;
-const octokit = new Octokit(githubToken);
+const octokit = new Octokit({auth: githubToken});
 
 async function run() {
   const owner = core.getInput('owner', { required: false }) || context.repo.owner;
