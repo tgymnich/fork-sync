@@ -19,7 +19,9 @@ async function run() {
       .then((pr) => {
 
         promiseRetry(function (retry, number) {
-          console.log('merge attempt number ', number);
+          if (number > 1) {
+            console.log('merge attempt number ', number);
+          }
 
           return octokit.pulls.merge({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number })
             .catch(function (err) {
