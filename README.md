@@ -3,7 +3,7 @@
 ![Version](https://img.shields.io/github/v/release/tg908/fork-sync?style=flat-square)
 
 Github action to sync your Forks.
-This action uses octokit and the GitHub API to automatically creates and merges a pull request with the head defined by `ownwer`:`head` into the base defined by `base`. If you create a PR in the same repository you can omit the `owner` parameter.
+This action uses octokit and the GitHub API to automatically create and merge a pull request with the head defined by `owner`:`head` into the base defined by `base`. If you create a PR in the same repository you can omit the `owner` parameter.
 
 # Example Workflow
 
