@@ -30,6 +30,9 @@ inputs:
   pr_message:
     description: 'The message in the pull request'
     required: false
+  ignore_fail:
+    description: 'ignore Exceptions'
+    required: false
 
 runs:
   using: 'node12'
