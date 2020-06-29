@@ -39,4 +39,4 @@ jobs:
 |   merge_method  | ✅          | merge                  |   merge, rebase or squash                            |
 |   pr_title      | ✅          | Fork Sync              |   Title of the created pull request                  |
 |   pr_message    | ✅          |                        |   Message of the created pull request                |
-|   ignore_fail   | ✅          |                        |   Skip if Error Raises                               |
+|   ignore_fail   | ✅          |                        |   Ignore Exceptions                                  |
