@@ -30,8 +30,8 @@ jobs:
 
 # Parameters
 
-|  name           |   Optional  |   Default              |   description                                       |
-|---              |---          |---                     |---                                                  |
+|  name           |   Optional  |   Default              |   description                                        |
+|---              |---          |---                     |---                                                   |
 |   owner         | ✅          | $current_repo_owner    |   Owner of the forked repository                     |
 |   github_token  | ❌          |                        |   Token  to access the Github API                    |
 |   head          | ✅          | master                 |   Head branch                                        |
@@ -40,3 +40,5 @@ jobs:
 |   pr_title      | ✅          | Fork Sync              |   Title of the created pull request                  |
 |   pr_message    | ✅          |                        |   Message of the created pull request                |
 |   ignore_fail   | ✅          |                        |   Ignore Exceptions                                  |
+
+⚠️ $current_repo_owner is your own username!
