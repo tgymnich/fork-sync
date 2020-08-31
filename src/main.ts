@@ -22,8 +22,7 @@ async function run() {
       console.log('No commits between ' + context.repo.owner + ':' + base + ' and ' + owner + ':' + head);
     } else {
       if (!ignoreFail) {
-        let message = error?.errors[0]?.message;
-        core.setFailed(`Failed to create or merge pull request: ${message ?? "[n/a]"}`);
+        core.setFailed(`Failed to create or merge pull request: ${error ?? "[n/a]"}`);
       }
     }
   }
