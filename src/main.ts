@@ -18,7 +18,7 @@ async function run() {
     let pr = await octokit.pulls.create({ owner: context.repo.owner, repo: context.repo.repo, title: prTitle, head: owner + ':' + head, base: base, body: prMessage, merge_method: mergeMethod, maintainer_can_modify: false });
     await octokit.pulls.merge({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number });
   } catch (error) {
-    if (error?.errors[0]?.message == 'No commits between ' + context.repo.owner + ':' + base + ' and ' + owner + ':' + head) {
+    if (!!error.errors && error.errors[0].message.startsWith('No commits between')) {
       console.log('No commits between ' + context.repo.owner + ':' + base + ' and ' + owner + ':' + head);
     } else {
       if (!ignoreFail) {
