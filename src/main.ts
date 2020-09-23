@@ -5,7 +5,13 @@ const { retry } = require("@octokit/plugin-retry");
 const githubToken = core.getInput('github_token', { required: true });
 const context = Github.context;
 const MyOctokit = Octokit.plugin(retry)
-const octokit = new MyOctokit({auth: githubToken});
+const octokit = new MyOctokit({
+  auth: githubToken,
+  request: {
+    retries: 6,
+    retryAfter: 10,
+  },
+});
 
 async function run() {
   const owner = core.getInput('owner', { required: false }) || context.repo.owner;
