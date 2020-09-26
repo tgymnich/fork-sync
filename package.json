@@ -1,6 +1,6 @@
 {
   "name": "fork-sync",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "private": true,
   "description": "Keep your fork up to date",
   "main": "lib/main.js",
@@ -23,7 +23,7 @@
   "author": "TG908",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.5",
+    "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
     "@octokit/plugin-retry": "^3.0.0",
     "@octokit/rest": "^18.0.6",

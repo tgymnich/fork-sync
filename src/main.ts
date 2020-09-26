@@ -8,8 +8,8 @@ const MyOctokit = Octokit.plugin(retry)
 const octokit = new MyOctokit({
   auth: githubToken,
   request: {
-    retries: 6,
-    retryAfter: 10,
+    retries: 4,
+    retryAfter: 30,
   },
 });
 
