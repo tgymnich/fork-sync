@@ -28,7 +28,7 @@ async function run() {
   } catch (error) {
     if (error.request.request.retryCount) {
       console.log(
-        `request failed after ${error.request.request.retryCount} retries`
+        `request failed after ${error.request.request.retryCount} retries with a delay of ${error.request.request.retryAfter}`
       );
     }
     if (!!error.errors && error.errors[0].message.startsWith('No commits between')) {
