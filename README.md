@@ -29,6 +29,40 @@ jobs:
           head: master
 ```
 
+## Auto approve
+
+If you use a workflow which does not allow to merge pull requests without a review 
+("Require pull request reviews before merging" in your [repo settings](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/configuring-protected-branches))
+you can set `auto_approve` to `true`. In that case you'll have to provide a [personal access token](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token)
+for a user which is allowed to review the pull requests changes. Make sure the token has at least
+`public_repo` permissions and store the token inside of the [repository secrets](https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
+
+An example workflow would then look like this:
+
+```yml
+name: Sync Fork
+
+on:
+  schedule:
+    - cron: '*/30 * * * *' # every 30 minutes
+  workflow_dispatch: # on button click
+
+jobs:
+  sync:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: tgymnich/fork-sync@v1.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: llvm
+          base: master
+          head: master
+          auto_approve: true
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+```
+
 # Parameters
 
 |  name           |   Optional  |   Default              |   description                                        |
@@ -41,5 +75,9 @@ jobs:
 |   pr_title      | ✅          | Fork Sync              |   Title of the created pull request                  |
 |   pr_message    | ✅          |                        |   Message of the created pull request                |
 |   ignore_fail   | ✅          |                        |   Ignore Exceptions                                  |
+|   auto_approve  | ✅ *        | `false`                |   Automatically approve pull request before merge    |
+|   personal_token| ✅          |                        |   Usertoken for the user to auto approve the pull request   |
 
 ⚠️ $current_repo_owner is your own username!
+
+⚠️ * if `auto_approve` is set to `true` you must provide the `personal_token`! 

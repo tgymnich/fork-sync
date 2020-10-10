@@ -33,6 +33,13 @@ inputs:
   ignore_fail:
     description: 'ignore Exceptions'
     required: false
+  auto_approve:
+    description: 'Automatically approve pull request before merge'
+    required: false
+    default: false
+  personal_token:
+    description: 'Usertoken for the user to auto approve the pull request'
+    required: false
 
 runs:
   using: 'node12'
