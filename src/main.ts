@@ -21,10 +21,23 @@ async function run() {
   const prTitle = core.getInput('pr_title', { required: false });
   const prMessage = core.getInput('pr_message', { required: false });
   const ignoreFail = core.getInput('ignore_fail', { required: false });
+  const autoApprove = core.getInput('auto_approve', { required: false });
+  const personalToken = core.getInput('personal_token', { required: false });
 
   try {
     let pr = await octokit.pulls.create({ owner: context.repo.owner, repo: context.repo.repo, title: prTitle, head: owner + ':' + head, base: base, body: prMessage, merge_method: mergeMethod, maintainer_can_modify: false });
     await delay(20);
+    if (autoApprove) {
+      if (!personalToken){
+        console.log('Cannot auto-approve, please set "personal_token"-variable');
+      }
+      else {
+        // Authenticate as current user
+        const octokitUser = new MyOctokit({auth: personalToken});
+        await octokitUser.pulls.createReview({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number, event: "COMMENT", body: "Auto approved" });
+        await octokitUser.pulls.createReview({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number, event: "APPROVE" });
+      }
+    }
     await octokit.pulls.merge({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number });
   } catch (error) {
     if (error.request.request.retryCount) {
@@ -32,7 +45,7 @@ async function run() {
         `request failed after ${error.request.request.retryCount} retries with a delay of ${error.request.request.retryAfter}`
       );
     }
-    if (!!error.errors && error.errors[0].message.startsWith('No commits between')) {
+    if (!!error.errors && !!error.errors[0] && !!error.errors[0].message && error.errors[0].message.startsWith('No commits between')) {
       console.log('No commits between ' + context.repo.owner + ':' + base + ' and ' + owner + ':' + head);
     } else {
       if (!ignoreFail) {
@@ -42,8 +55,8 @@ async function run() {
   }
 }
 
-function delay(ms: number) {
-  return new Promise( resolve => setTimeout(resolve, ms * 1000) );
+function delay(s: number) {
+  return new Promise( resolve => setTimeout(resolve, s * 1000) );
 }
 
 run();
