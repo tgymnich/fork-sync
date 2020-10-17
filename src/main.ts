@@ -26,7 +26,7 @@ async function run() {
 
   try {
     let pr = await octokit.pulls.create({ owner: context.repo.owner, repo: context.repo.repo, title: prTitle, head: owner + ':' + head, base: base, body: prMessage, merge_method: mergeMethod, maintainer_can_modify: false });
-    await delay(5);
+    await delay(20);
     if (autoApprove) {
       if (!personalToken){
         console.log('Cannot auto-approve, please set "personal_token"-variable');
