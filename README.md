@@ -3,7 +3,7 @@
 ![Version](https://img.shields.io/github/v/release/tg908/fork-sync?style=flat-square)
 
 Github action to sync your Forks.
-This action uses octokit and the GitHub API to automatically create and merge a pull request with the head defined by `owner`:`head` into the base defined by `base`. If you create a PR in the same repository you can omit the `owner` parameter.
+This action uses octokit and the GitHub API to automatically create and merge a pull request with the head defined by `head` into the base defined by `base`. The head branch owner is defined by `owner`. If you create a PR in the same repository you can omit the `owner` parameter.
 
 # Example Workflow
 
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: tgymnich/fork-sync@v1.2
+      - uses: tgymnich/fork-sync@v1.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           owner: llvm
@@ -53,7 +53,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: tgymnich/fork-sync@v1.2
+      - uses: tgymnich/fork-sync@v1.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           owner: llvm
@@ -79,5 +79,7 @@ jobs:
 |   personal_token| ✅          |                        |   Usertoken for the user to auto approve the pull request   |
 
 ⚠️ $current_repo_owner is your own username!
+
+⚠️ Only provide the branch name for `head` and `base`. `user:branch` will not work! 
 
 ⚠️ * if `auto_approve` is set to `true` you must provide the `personal_token`! 
