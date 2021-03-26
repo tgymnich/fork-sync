@@ -21,9 +21,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: tgymnich/fork-sync@v1.3
+      - uses: tgymnich/fork-sync@v1.4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           owner: llvm
           base: master
           head: master
@@ -53,14 +52,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: tgymnich/fork-sync@v1.3
+      - uses: tgymnich/fork-sync@v1.4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PERSONAL_TOKEN }}
           owner: llvm
           base: master
           head: master
           auto_approve: true
-          personal_token: ${{ secrets.PERSONAL_TOKEN }}
 ```
 
 # Parameters
