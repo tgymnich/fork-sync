@@ -68,7 +68,7 @@ jobs:
 |  name           |   Optional  |   Default              |   description                                        |
 |---              |---          |---                     |---                                                   |
 |   owner         | ✅          | $current_repo_owner    |   Owner of the forked repository                     |
-|   github_token  | ✅          | ${{ github.token }}                      |   Token  to access the Github API                    |
+|   token         | ✅          | ${{ github.token }}    |   Token  to access the Github API                    |
 |   head          | ✅          | master                 |   Head branch                                        |
 |   base          | ✅          | master                 |   Base branch                                        |
 |   merge_method  | ✅          | merge                  |   merge, rebase or squash                            |
