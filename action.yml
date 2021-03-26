@@ -10,7 +10,7 @@ inputs:
     required: false
   token:
     description: 'Token for the github API'
-    required: true
+    required: false
     default: ${{ github.token }}
   head:
     description: 'Branch to track'
