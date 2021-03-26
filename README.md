@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: tgymnich/fork-sync@v1.3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           owner: llvm
           base: master
           head: master
