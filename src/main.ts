@@ -2,11 +2,11 @@ import * as core from '@actions/core';
 const Github = require('@actions/github');
 const { Octokit } = require("@octokit/rest");
 const { retry } = require("@octokit/plugin-retry");
-const githubToken = core.getInput('github_token', { required: true });
+const token = core.getInput('token', { required: true });
 const context = Github.context;
 const MyOctokit = Octokit.plugin(retry)
 const octokit = new MyOctokit({
-  auth: githubToken,
+  auth: token,
   request: {
     retries: 4,
     retryAfter: 60,
@@ -22,21 +22,13 @@ async function run() {
   const prMessage = core.getInput('pr_message', { required: false });
   const ignoreFail = core.getInput('ignore_fail', { required: false });
   const autoApprove = core.getInput('auto_approve', { required: false });
-  const personalToken = core.getInput('personal_token', { required: false });
 
   try {
     let pr = await octokit.pulls.create({ owner: context.repo.owner, repo: context.repo.repo, title: prTitle, head: owner + ':' + head, base: base, body: prMessage, merge_method: mergeMethod, maintainer_can_modify: false });
     await delay(20);
     if (autoApprove) {
-      if (!personalToken){
-        console.log('Cannot auto-approve, please set "personal_token"-variable');
-      }
-      else {
-        // Authenticate as current user
-        const octokitUser = new MyOctokit({auth: personalToken});
-        await octokitUser.pulls.createReview({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number, event: "COMMENT", body: "Auto approved" });
-        await octokitUser.pulls.createReview({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number, event: "APPROVE" });
-      }
+        await octokit.pulls.createReview({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number, event: "COMMENT", body: "Auto approved" });
+        await octokit.pulls.createReview({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number, event: "APPROVE" });
     }
     await octokit.pulls.merge({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number });
   } catch (error) {

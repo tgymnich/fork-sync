@@ -68,7 +68,7 @@ jobs:
 |  name           |   Optional  |   Default              |   description                                        |
 |---              |---          |---                     |---                                                   |
 |   owner         | ✅          | $current_repo_owner    |   Owner of the forked repository                     |
-|   github_token  | ❌          |                        |   Token  to access the Github API                    |
+|   github_token  | ✅          | ${{ github.token }}                      |   Token  to access the Github API                    |
 |   head          | ✅          | master                 |   Head branch                                        |
 |   base          | ✅          | master                 |   Base branch                                        |
 |   merge_method  | ✅          | merge                  |   merge, rebase or squash                            |
@@ -76,10 +76,9 @@ jobs:
 |   pr_message    | ✅          |                        |   Message of the created pull request                |
 |   ignore_fail   | ✅          |                        |   Ignore Exceptions                                  |
 |   auto_approve  | ✅ *        | `false`                |   Automatically approve pull request before merge    |
-|   personal_token| ✅          |                        |   Usertoken for the user to auto approve the pull request   |
 
 ⚠️ $current_repo_owner is your own username!
 
 ⚠️ Only provide the branch name for `head` and `base`. `user:branch` will not work! 
 
-⚠️ * if `auto_approve` is set to `true` you must provide the `personal_token`! 
+⚠️ * if `auto_approve` is set to `true` you must provide a personal access token in `token` the default github token won't work! 
