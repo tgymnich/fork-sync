@@ -4,14 +4,7 @@ const { Octokit } = require("@octokit/rest");
 const { retry } = require("@octokit/plugin-retry");
 const token = core.getInput('token', { required: true });
 const context = Github.context;
-const MyOctokit = Octokit.plugin(retry)
-const octokit = new MyOctokit({
-  auth: token,
-  request: {
-    retries: 4,
-    retryAfter: 60,
-  },
-});
+const MyOctokit = Octokit.plugin(retry);
 
 async function run() {
   const owner = core.getInput('owner', { required: false }) || context.repo.owner;
@@ -22,6 +15,16 @@ async function run() {
   const prMessage = core.getInput('pr_message', { required: false });
   const ignoreFail = core.getInput('ignore_fail', { required: false });
   const autoApprove = core.getInput('auto_approve', { required: false });
+  const retries = parseInt(core.getInput('retries', { required: false })) || 4;
+  const retryAfter = parseInt(core.getInput('retry_after', { required: false })) || 60;
+  
+  const octokit = new MyOctokit({
+    auth: token,
+    request: {
+      retries,
+      retryAfter,
+    },
+  });
 
   try {
     let pr = await octokit.pulls.create({ owner: context.repo.owner, repo: context.repo.repo, title: prTitle, head: owner + ':' + head, base: base, body: prMessage, merge_method: mergeMethod, maintainer_can_modify: false });
