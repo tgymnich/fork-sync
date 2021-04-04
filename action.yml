@@ -38,6 +38,14 @@ inputs:
     description: 'Automatically approve pull request before merge'
     required: false
     default: false
+  retries:
+    description: 'Retry count'
+    required: false
+    default: 4
+  retry_after:
+    description: 'Delay amount between retries'
+    required: false
+    default: 60
 
 runs:
   using: 'node12'
