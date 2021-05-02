@@ -58,7 +58,6 @@ jobs:
           owner: llvm
           base: master
           head: master
-          auto_approve: true
 ```
 
 # Parameters
@@ -73,7 +72,6 @@ jobs:
 |   pr_title      | ✅          | Fork Sync              |   Title of the created pull request                  |
 |   pr_message    | ✅          |                        |   Message of the created pull request                |
 |   ignore_fail   | ✅          |                        |   Ignore Exceptions                                  |
-|   auto_approve  | ✅ *        | `false`                |   Automatically approve pull request before merge    |
 
 ⚠️ $current_repo_owner is your own username!
 
