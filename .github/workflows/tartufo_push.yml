@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@HEAD
         with:
           repository: gdcorp-actions/tartufo
-          token: ${{ secrets.GDCORP_ACTIONS_REPO_CLONE_TOKEN }} # PAT with read access to gdcorp-actions/tartufo
+          token: ${{ secrets.GITHUB_TOKEN }} # PAT with read access to gdcorp-actions/tartufo
           ref: v2.1.0
           path: tartufo
           persist-credentials: false # Do not persist auth token in local git config.
@@ -20,4 +20,4 @@ jobs:
       - name: Run Tartufo from gdcorp-actions/tartufo repository
         uses: ./tartufo
         with:
-          github_token: ${{ secrets.GDCORP_ACTIONS_REPO_CLONE_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
