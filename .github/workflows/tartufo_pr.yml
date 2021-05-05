@@ -1,0 +1,28 @@
+name: Tartufo scan PR for secrets
+
+on: [ pull_request ]  # Trigger on all pushes to all branches
+
+jobs:
+  tartufo:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@HEAD
+        with:
+          python-version: 3.8.9
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install tartufo
+
+      - uses: actions/checkout@HEAD
+        with:
+          ref: ${{ github.ref }}
+          path: scomp
+
+      - name: Analysing the PR with Tartufo
+        run: |
+          cd ./scomp
+          tartufo scan-local-repo --branch ${{ github.ref }} --max-depth 1000000 .

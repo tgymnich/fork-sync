@@ -1,0 +1,14 @@
+[tool.tartufo]
+cleanup = true
+entropy = true
+exclude-paths = ".tartufo-excludes"
+exclude-signatures = [
+    "f68da3ad3508e89194b4bb7f07c1d5b534aa2d03d893d4536710c25e0bab5577", # GH Checkout Action hash
+    "d70106533dcf28b5d4520e0d91a18114009cdb1555229adeeb715571223208e2", # GH Checkout Action hash
+    "adf754824c0f98e114c869475b8e9f5ff7f8a02ceffe666577fbce80fbf9d0de", # GH Checkout Action hash
+    "45789f58aee4394d13e82c73c4f725dfeefdd120d7c50d89b4431ef15605d529", # GH setup-python Action hash
+    "613e8c7c0998c2217323e457321e22c14960bb8c901a30ea3cbcb9bd9a78f702", # GD Super-linter action hash
+]
+json = false
+regex = true
+repo-path = "."
