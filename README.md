@@ -31,7 +31,7 @@ jobs:
 ## Auto approve
 
 If you use a workflow which does not allow to merge pull requests without a review 
-("Require pull request reviews before merging" in your [repo settings](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/configuring-protected-branches))
+("Require pull request reviews before merging" in your [repo settings](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-auto-merge-for-pull-requests-in-your-repository))
 you can set `auto_approve` to `true`. In that case you'll have to provide a [personal access token](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token)
 for a user which is allowed to review the pull requests changes. Make sure the token has at least
 `public_repo` permissions and store the token inside of the [repository secrets](https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository).
