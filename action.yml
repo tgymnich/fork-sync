@@ -39,6 +39,10 @@ inputs:
     description: 'Automatically approve pull request before merge'
     required: false
     default: false
+  auto_merge:
+    description: 'Automatically merge the pull request'
+    required: false
+    default: true
   retries:
     description: 'Retry count'
     required: false

@@ -16,6 +16,7 @@ async function run() {
   const prMessage = core.getInput('pr_message', { required: false });
   const ignoreFail = core.getBooleanInput('ignore_fail', { required: false });
   const autoApprove = core.getBooleanInput('auto_approve', { required: false });
+  const autoMerge = core.getBooleanInput('auto_merge', { required: false });
   const retries = parseInt(core.getInput('retries', { required: false })) || 4;
   const retryAfter = parseInt(core.getInput('retry_after', { required: false })) || 60;
   
@@ -44,7 +45,9 @@ async function run() {
         await octokit.pulls.createReview({ owner: context.repo.owner, repo, pull_number: pr.data.number, event: "COMMENT", body: "Auto approved" });
         await octokit.pulls.createReview({ owner: context.repo.owner, repo, pull_number: pr.data.number, event: "APPROVE" });
     }
-    await octokit.pulls.merge({ owner: context.repo.owner, repo, pull_number: pr.data.number, merge_method: mergeMethod });
+    if(autoMerge) {
+        await octokit.pulls.merge({ owner: context.repo.owner, repo, pull_number: pr.data.number, merge_method: mergeMethod });
+    }
   } catch (error) {
     if (error.request.request.retryCount) {
       console.log(
