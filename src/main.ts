@@ -48,7 +48,7 @@ async function run() {
     if(autoMerge) {
         await octokit.pulls.merge({ owner: context.repo.owner, repo, pull_number: pr.data.number, merge_method: mergeMethod });
     }
-  } catch (error) {
+  } catch (error: any) {
     if (error.request.request.retryCount) {
       console.log(
         `request failed after ${error.request.request.retryCount} retries with a delay of ${error.request.request.retryAfter}`
