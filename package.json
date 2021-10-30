@@ -1,6 +1,6 @@
 {
   "name": "fork-sync",
-  "version": "1.5.0",
+  "version": "1.6.3",
   "private": true,
   "description": "Keep your fork up to date",
   "main": "lib/main.js",
@@ -23,13 +23,13 @@
   "author": "tgymnich",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.7",
+    "@actions/core": "^1.6.0",
     "@actions/github": "^4.0.0",
-    "@octokit/plugin-retry": "^3.0.7",
+    "@octokit/plugin-retry": "^3.0.9",
     "@octokit/rest": "^18.5.3"
   },
   "devDependencies": {
     "@types/node": "^15.0.1",
-    "typescript": "^4.2.4"
+    "typescript": "^4.4.4"
   }
 }

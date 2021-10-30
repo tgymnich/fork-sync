@@ -27,17 +27,22 @@ inputs:
   pr_title:
     description: 'The title of the pull request'
     required: false
-    default: 'Fork Sync'
+    default: 'Fork Sync: Update from parent repository'
   pr_message:
     description: 'The message in the pull request'
     required: false
   ignore_fail:
-    description: 'ignore Exceptions'
+    description: 'Ignore Exceptions'
     required: false
+    default: false
   auto_approve:
     description: 'Automatically approve pull request before merge'
     required: false
     default: false
+  auto_merge:
+    description: 'Automatically merge the pull request'
+    required: false
+    default: true
   retries:
     description: 'Retry count'
     required: false
