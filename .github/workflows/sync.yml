@@ -1,0 +1,17 @@
+name: Sync Fork
+
+on:
+  push: # push 时触发, 主要是为了测试配置有没有问题
+  schedule:
+    - cron: '* */30 * * *' # 每3小时触发, 对于一些更新不那么频繁的项目可以设置为每天一次, 低碳一点
+    workflow_dispatch:  # click the button on Github repo!
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: TG908/fork-sync@v1.6.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: qq_32394351 # fork 的上游仓库 user
+          head: https://gitcode.net/qq_32394351/dr_py # fork 的上游仓库 branch
+          base: https://github.com/cfsxy/dr_py # 本地仓库 branch
