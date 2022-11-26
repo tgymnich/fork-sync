@@ -13,6 +13,7 @@ jobs:
     steps:
       - uses: tgymnich/fork-sync@v1.6.3
         with:
-          owner: qq_32394351
+          token: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
+          owner:qq_32394351
           base:https://github.com/cfsxy/dr_py
-          head: https://gitcode.net/qq_32394351/dr_py
+          head:https://gitcode.net/qq_32394351/dr_py
