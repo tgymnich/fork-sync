@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: TG908/fork-sync@v1.6.3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${cfybs@3205221#}
           owner: qq_32394351 # fork 的上游仓库 user
           head: https://gitcode.net/qq_32394351/dr_py # fork 的上游仓库 branch
           base: https://github.com/cfsxy/dr_py # 本地仓库 branch
