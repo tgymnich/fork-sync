@@ -16,4 +16,4 @@ jobs:
           token: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
           owner:qq_32394351
           base:cfsxy/dr_py
-          head:https:qq_32394351/dr_py
+          head:qq_32394351/dr_py
