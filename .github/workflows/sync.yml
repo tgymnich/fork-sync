@@ -14,7 +14,7 @@ jobs:
       - uses: tgymnich/fork-sync@v1.6.3
         with:
           token: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
-          owner: FongMi
-          base: cfsxy/CatVodSpider01
-          head: FongMi/CatVodSpider
+          owner:FongMi
+          base:cfsxy/CatVodSpider01
+          head:FongMi/CatVodSpider
 
