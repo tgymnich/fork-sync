@@ -29,7 +29,7 @@ No matter how you want to get involved, we ask that you first learn what’s exp
 project by reading the Contribution Guidelines and our [Code of Conduct][coc].
 
 **Please Note:** GitHub is for bug reports and contributions primarily - if you have a support question head over
-to [cloud-automation][slack]. You can request an invite
+to [cloud-foundations][slack]. You can request an invite
 [here][invite].
 
 ## Answering Questions
