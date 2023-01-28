@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: tgymnich/fork-sync@v1.6.3
+      - uses: tgymnich/fork-sync@v1.7
         with:
           token: ${{ secrets.PERSONAL_TOKEN }}
           owner: llvm
