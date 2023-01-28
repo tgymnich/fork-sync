@@ -23,7 +23,7 @@
   "author": "tgymnich",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.6.0",
+    "@actions/core": "^1.10.0",
     "@actions/github": "^4.0.0",
     "@octokit/plugin-retry": "^3.0.9",
     "@octokit/rest": "^18.5.3"
