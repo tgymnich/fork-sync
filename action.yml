@@ -53,5 +53,5 @@ inputs:
     default: 60
 
 runs:
-  using: 'node18'
+  using: 'node16'
   main: 'lib/main.js'
