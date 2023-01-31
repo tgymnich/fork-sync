@@ -65,6 +65,7 @@ jobs:
 |  name           |   Optional  |   Default              |   description                                        |
 |---              |---          |---                     |---                                                   |
 |   owner         | ✅          | $current_repo_owner    |   Owner of the forked repository                     |
+|   repo          | ✅          | $current_repo_name     |   Name of the forked repository                      |
 |   token         | ✅          | ${{ github.token }}    |   Token  to access the Github API                    |
 |   head          | ✅          | master                 |   Head branch                                        |
 |   base          | ✅          | master                 |   Base branch                                        |
@@ -74,6 +75,7 @@ jobs:
 |   ignore_fail   | ✅          |                        |   Ignore Exceptions                                  |
 
 ⚠️ $current_repo_owner is your own username!
+⚠️ $current_repo_name is the name of the current repository!
 
 ⚠️ Only provide the branch name for `head` and `base`. `user:branch` will not work! 
 
