@@ -8,6 +8,9 @@ inputs:
   owner:
     description: 'Owner of the forked repository'
     required: false
+  repo:
+    description: 'Name of the forked repository'
+    required: false
   token:
     description: 'Token for the github API'
     required: false
@@ -53,5 +56,5 @@ inputs:
     default: 60
 
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'lib/main.js'

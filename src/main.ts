@@ -1,3 +1,7 @@
+/*
+ * © 2022 GoDaddy Inc. All Rights Reserved. No license or other rights granted without written permission.
+ */
+
 import * as core from '@actions/core';
 const Github = require('@actions/github');
 const { Octokit } = require("@octokit/rest");
@@ -8,7 +12,7 @@ const MyOctokit = Octokit.plugin(retry);
 
 async function run() {
   let owner = core.getInput('owner', { required: false }) || context.repo.owner;
-  let repo = context.repo.repo
+  let repo = core.getInput('repo', { required: false}) || context.repo.repo;
   const base = core.getInput('base', { required: false });
   const head = core.getInput('head', { required: false });
   const mergeMethod = core.getInput('merge_method', { required: false });
@@ -19,7 +23,7 @@ async function run() {
   const autoMerge = core.getBooleanInput('auto_merge', { required: false });
   const retries = parseInt(core.getInput('retries', { required: false })) || 4;
   const retryAfter = parseInt(core.getInput('retry_after', { required: false })) || 60;
-  
+
   const octokit = new MyOctokit({
     auth: token,
     request: {
@@ -39,14 +43,14 @@ async function run() {
   }
 
   try {
-    let pr = await octokit.pulls.create({ owner: context.repo.owner, repo, title: prTitle, head: owner + ':' + head, base: base, body: prMessage, maintainer_can_modify: false });
+    let pr = await octokit.pulls.create({ owner: context.repo.owner, repo: context.repo.repo, title: prTitle, head: owner + ':' + head, base: base, body: prMessage, maintainer_can_modify: false });
     await delay(20);
     if (autoApprove) {
-        await octokit.pulls.createReview({ owner: context.repo.owner, repo, pull_number: pr.data.number, event: "COMMENT", body: "Auto approved" });
-        await octokit.pulls.createReview({ owner: context.repo.owner, repo, pull_number: pr.data.number, event: "APPROVE" });
+        await octokit.pulls.createReview({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number, event: "COMMENT", body: "Auto approved" });
+        await octokit.pulls.createReview({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number, event: "APPROVE" });
     }
     if(autoMerge) {
-        await octokit.pulls.merge({ owner: context.repo.owner, repo, pull_number: pr.data.number, merge_method: mergeMethod });
+        await octokit.pulls.merge({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number, merge_method: mergeMethod });
     }
   } catch (error: any) {
     if (error.request.request.retryCount) {
