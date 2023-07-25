@@ -80,3 +80,8 @@ jobs:
 ⚠️ Only provide the branch name for `head` and `base`. `user:branch` will not work! 
 
 ⚠️ * if `auto_approve` is set to `true` you must provide a personal access token in `token` the default github token won't work! 
+
+# Alternatives
+
+Pull Github App - https://github.com/wei/pull
+
