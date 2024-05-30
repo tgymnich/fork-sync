@@ -1,10 +1,11 @@
 name: "Publish GitHub Action"
- on:
+
+on:
    push:
      branches:    
        - master
 
- jobs:
+jobs:
    publish:
      runs-on: ubuntu-latest
      steps:
