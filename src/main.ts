@@ -1,7 +1,8 @@
 import * as core from '@actions/core';
-const Github = require('@actions/github');
-const { Octokit } = require("@octokit/rest");
-const { retry } = require("@octokit/plugin-retry");
+import { Github } from '@actions/github';
+import { Octokit } from "@octokit/rest";
+import { retry } from "@octokit/plugin-retry";
+
 const token = core.getInput('token', { required: true });
 const context = Github.context;
 const MyOctokit = Octokit.plugin(retry);
