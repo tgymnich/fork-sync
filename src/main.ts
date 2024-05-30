@@ -1,11 +1,9 @@
 import * as core from '@actions/core';
 import * as Github from '@actions/github'
 import { Octokit } from "@octokit/rest";
-import { retry } from "@octokit/plugin-retry";
 
 const token = core.getInput('token', { required: true });
 const context = Github.context;
-const MyOctokit = Octokit.plugin(retry);
 
 async function run() {
   let owner = core.getInput('owner', { required: false }) || context.repo.owner;
@@ -21,13 +19,7 @@ async function run() {
   const retries = parseInt(core.getInput('retries', { required: false })) ?? 4;
   const retryAfter = parseInt(core.getInput('retry_after', { required: false })) ?? 60;
 
-  const octokit = new MyOctokit({
-    auth: token,
-    request: {
-      retries,
-      retryAfter,
-    },
-  });
+  const octokit = new Octokit({auth: token});
 
   let r = await octokit.rest.repos.get({
     owner,
