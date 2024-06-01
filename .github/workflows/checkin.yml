@@ -6,7 +6,7 @@ jobs:
    check_pr:
      runs-on: ubuntu-latest
      steps:
-     - uses: actions/checkout@v4.1.1
+     - uses: actions/checkout@v4.1.6
 
      - name: "npm ci"
        run: npm ci
