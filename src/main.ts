@@ -39,7 +39,16 @@ async function run() {
         await octokit.rest.pulls.createReview({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number, event: "APPROVE" });
     }
     if(autoMerge) {
+      if (mergeMethod == "merge") {
         await octokit.rest.pulls.merge({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number, merge_method: "merge" });
+      } else if (mergeMethod == "rebase") {
+        await octokit.rest.pulls.merge({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number, merge_method: "rebase" });
+      } else if (mergeMethod == "squash") {
+        await octokit.rest.pulls.merge({ owner: context.repo.owner, repo: context.repo.repo, pull_number: pr.data.number, merge_method: "squash" });
+      } else {
+        core.setFailed(`Unknown merge_method: ${mergeMethod}`);
+        return;
+      }
     }
   } catch (error: any) {
     if (error?.request?.request?.retryCount) {
