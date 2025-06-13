@@ -72,6 +72,7 @@ jobs:
 |   merge_method  | ✅          | merge                  |   merge, rebase or squash                            |
 |   pr_title      | ✅          | Fork Sync              |   Title of the created pull request                  |
 |   pr_message    | ✅          |                        |   Message of the created pull request                |
+|   pr_reviewers  | ✅          |                        |   Users to request reviews from                      |
 |   ignore_fail   | ✅          |                        |   Ignore Exceptions                                  |
 
 ⚠️ $current_repo_owner is your own username!
@@ -80,6 +81,8 @@ jobs:
 ⚠️ Only provide the branch name for `head` and `base`. `user:branch` will not work! 
 
 ⚠️ * if `auto_approve` is set to `true` you must provide a personal access token in `token` the default github token won't work! 
+
+⚠️ `pr_reviewers` is a string of usernames separated by commas! _e.g._ `'myUsename,otherUsername'`
 
 # Alternatives
 
