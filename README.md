@@ -74,7 +74,7 @@ jobs:
 |   pr_message    | ✅          |                        |   Message of the created pull request                |
 |   ignore_fail   | ✅          |                        |   Ignore Exceptions                                  |
 
-⚠️ $current_repo_owner is your own username!
+⚠️ $current_repo_owner is your own username!  
 ⚠️ $current_repo_name is the name of the current repository!
 
 ⚠️ Only provide the branch name for `head` and `base`. `user:branch` will not work! 
